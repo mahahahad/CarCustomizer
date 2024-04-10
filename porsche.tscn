@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccqhrx5q44mhj"]
+
+[ext_resource type="PackedScene" uid="uid://86txn817thrx" path="res://Models/porsche_gt3_rs/scene.gltf" id="1_ius1k"]
+[ext_resource type="Script" path="res://porsche.gd" id="2_eguxt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8n4vn"]
+size = Vector3(2.0022, 1.45459, 4.69336)
+
+[node name="Porsche" instance=ExtResource("1_ius1k")]
+script = ExtResource("2_eguxt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655527, -0.107058)
+shape = SubResource("BoxShape3D_8n4vn")

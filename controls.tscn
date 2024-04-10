@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgkw23i7llda8"]
+
+[ext_resource type="Shader" path="res://blur.gdshader" id="1_sm5xa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfnt4"]
+shader = ExtResource("1_sm5xa")
+shader_parameter/blur_amount = 1.0
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsf8f"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d51rg"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.623529, 0.658824, 0.627451, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="FontVariation" id="FontVariation_efeui"]
+variation_opentype = {
+2003265652: 800
+}
+
+[sub_resource type="FontVariation" id="FontVariation_aldya"]
+variation_opentype = {
+2003265652: 600
+}
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_hfnt4")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 162.0
+grow_vertical = 0
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsf8f")
+
+[node name="ControlContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="Control" type="HBoxContainer" parent="PanelContainer/ControlContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="KeyIcon" type="PanelContainer" parent="PanelContainer/ControlContainer/Control"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d51rg")
+
+[node name="Key" type="Label" parent="PanelContainer/ControlContainer/Control/KeyIcon"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_efeui")
+theme_override_font_sizes/font_size = 14
+text = "C"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/ControlContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_aldya")
+theme_override_font_sizes/font_size = 12
+text = "Change Scene"

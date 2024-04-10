@@ -1,0 +1,212 @@
+[gd_scene load_steps=14 format=3 uid="uid://bmc2e02nt5p4l"]
+
+[ext_resource type="Script" path="res://change_scene.gd" id="1_p7n6k"]
+[ext_resource type="Shader" path="res://blur.gdshader" id="2_284ci"]
+[ext_resource type="Theme" uid="uid://cfo04hkakey3j" path="res://flat_ui.tres" id="2_ttbpp"]
+[ext_resource type="Texture2D" uid="uid://b4flb1a8isr0f" path="res://Icons/arrow-left.svg" id="3_hi6oq"]
+[ext_resource type="Texture2D" uid="uid://b33vc1hchqq6a" path="res://HDRIs/lonely_road_afternoon_puresky_4k.exr" id="3_kxl4r"]
+[ext_resource type="Texture2D" uid="uid://wb8gh3y0ay34" path="res://HDRIs/cobblestone_street_night_4k.exr" id="4_k1kdn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nk6fs"]
+shader = ExtResource("2_284ci")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1j3v"]
+shader = ExtResource("2_284ci")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78pkm"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_rmtag"]
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="Gradient" id="Gradient_5m8wy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1h38i"]
+gradient = SubResource("Gradient_5m8wy")
+width = 157
+height = 78
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kr6v"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[node name="ChangeScene" type="Control"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("1_p7n6k")
+
+[node name="Overlay" type="Panel" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_nk6fs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+material = SubResource("ShaderMaterial_y1j3v")
+custom_minimum_size = Vector2(331, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -250.0
+offset_right = 331.0
+offset_bottom = 250.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_78pkm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_ttbpp")
+flat = true
+metadata/Name = "BackButton"
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hi6oq")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.858824, 0.858824, 0.815686, 1)
+theme_override_fonts/font = SubResource("FontVariation_rmtag")
+text = "Scene"
+uppercase = true
+
+[node name="SceneContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SceneContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_rmtag")
+text = "Day"
+
+[node name="DayButton" type="Button" parent="ScrollContainer/VBoxContainer/SceneContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 157)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_ttbpp")
+icon = ExtResource("3_kxl4r")
+expand_icon = true
+metadata/Name = "DayButton"
+
+[node name="SceneContainer2" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SceneContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_rmtag")
+text = "Night"
+
+[node name="NightButton" type="Button" parent="ScrollContainer/VBoxContainer/SceneContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 157)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_ttbpp")
+icon = ExtResource("4_k1kdn")
+expand_icon = true
+metadata/Name = "NightButton"
+
+[node name="SceneContainer3" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SceneContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_rmtag")
+text = "Black"
+
+[node name="BlackButton" type="Button" parent="ScrollContainer/VBoxContainer/SceneContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 157)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_ttbpp")
+icon = SubResource("GradientTexture2D_1h38i")
+expand_icon = true
+metadata/Name = "BlackButton"
+
+[node name="Outline" type="Panel" parent="."]
+custom_minimum_size = Vector2(332, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -250.0
+offset_right = 332.0
+offset_bottom = 250.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4kr6v")
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/SceneContainer/DayButton" to="." method="_on_day_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/SceneContainer2/NightButton" to="." method="_on_night_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/SceneContainer3/BlackButton" to="." method="_on_black_button_pressed"]

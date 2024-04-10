@@ -1,0 +1,357 @@
+[gd_scene load_steps=19 format=3 uid="uid://dn0j5qggwpok2"]
+
+[ext_resource type="Shader" path="res://blur.gdshader" id="1_jsrji"]
+[ext_resource type="Texture2D" uid="uid://dt22h3w0junji" path="res://Icons/plus-icon.svg" id="1_rgqoa"]
+[ext_resource type="Script" path="res://paint.gd" id="1_u8ivk"]
+[ext_resource type="Texture2D" uid="uid://3876yd2fs4ls" path="res://Assets/MatteMaterial.png" id="3_djy0l"]
+[ext_resource type="Theme" uid="uid://cfo04hkakey3j" path="res://flat_ui.tres" id="3_q6o5c"]
+[ext_resource type="Texture2D" uid="uid://bkubijpjtjmng" path="res://Assets/MetallicMaterial.png" id="4_gjto4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1j3v"]
+shader = ExtResource("1_jsrji")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78pkm"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_h3vqs"]
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_3h7uk"]
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ed2f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vty65"]
+bg_color = Color(0.278431, 0.278431, 0.290196, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[sub_resource type="Theme" id="Theme_iajyh"]
+Button/styles/normal = SubResource("StyleBoxFlat_2ed2f")
+ColorPickerButton/styles/disabled = SubResource("StyleBoxFlat_vty65")
+ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_vty65")
+
+[sub_resource type="FontVariation" id="FontVariation_jia0h"]
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m1fj"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_tw64q"]
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ax2q3"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kr6v"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.278431, 0.290196, 1)
+
+[node name="Paint" type="Control"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_u8ivk")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_y1j3v")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -258.5
+offset_right = 321.0
+offset_bottom = 258.5
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_78pkm")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_h3vqs")
+text = "Colour"
+uppercase = true
+
+[node name="ColourContainer" type="FlowContainer" parent="PanelContainer/VBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+
+[node name="Red1" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0, 0, 1)
+
+[node name="Red2" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.8, 0, 0, 1)
+
+[node name="Red3" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.6, 0, 0, 1)
+
+[node name="Red4" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.4, 0, 0, 1)
+
+[node name="Red5" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.2, 0, 0, 1)
+
+[node name="Green1" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 1, 0, 1)
+
+[node name="Green2" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0.8, 0, 1)
+
+[node name="Green3" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0.6, 0, 1)
+
+[node name="Green4" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0.4, 0, 1)
+
+[node name="Green5" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0.2, 0, 1)
+
+[node name="Blue1" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 1, 1)
+
+[node name="Blue2" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0.8, 1)
+
+[node name="Blue3" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0.6, 1)
+
+[node name="Blue4" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0.4, 1)
+
+[node name="Blue5" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0.2, 1)
+
+[node name="Neutral1" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
+
+[node name="Neutral2" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Neutral3" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Neutral4" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Neutral5" type="ColorRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColourPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_q6o5c")
+theme_override_fonts/font = SubResource("FontVariation_3h7uk")
+icon_alignment = 1
+edit_alpha = false
+
+[node name="PlusIcon" type="TextureRect" parent="PanelContainer/VBoxContainer3/VBoxContainer/ColourPickerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rgqoa")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_h3vqs")
+text = "Finish"
+uppercase = true
+
+[node name="FinishContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FinishMatteButton" type="Button" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_iajyh")
+theme_override_fonts/font = SubResource("FontVariation_jia0h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1m1fj")
+icon = ExtResource("3_djy0l")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_tw64q")
+text = "Matte"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FinishMetallicButton" type="Button" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_iajyh")
+theme_override_fonts/font = SubResource("FontVariation_jia0h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ax2q3")
+icon = ExtResource("4_gjto4")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_tw64q")
+text = "Metallic"
+
+[node name="Outline" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -258.5
+offset_right = 321.0
+offset_bottom = 258.5
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4kr6v")
+
+[connection signal="color_changed" from="PanelContainer/VBoxContainer3/VBoxContainer/ColourPickerButton" to="." method="_on_color_picker_color_changed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer/FinishMatteButton" to="." method="_on_finish_matte_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer3/VBoxContainer2/FinishContainer/VBoxContainer2/FinishMetallicButton" to="." method="_on_finish_metallic_button_pressed"]

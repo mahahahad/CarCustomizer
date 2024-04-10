@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyeaund6hbiyc"]
+
+[ext_resource type="Script" path="res://navigation.gd" id="1_bg07l"]
+[ext_resource type="Shader" path="res://blur.gdshader" id="1_lk12r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqcv6"]
+shader = ExtResource("1_lk12r")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqevo"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_liums"]
+variation_opentype = {
+2003265652: 600
+}
+spacing_glyph = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8nhi"]
+content_margin_left = 32.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 8.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.858824, 0.858824, 0.815686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uicjn"]
+content_margin_left = 32.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 8.0
+draw_center = false
+border_width_bottom = 1
+border_color = Color(0.654902, 0.654902, 0.690196, 1)
+
+[node name="Navigation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 71.0
+script = ExtResource("1_bg07l")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_nqcv6")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -224.0
+offset_right = 224.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qqevo")
+
+[node name="NavBar" type="TabBar" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0.858824, 0.858824, 0.815686, 1)
+theme_override_colors/font_unselected_color = Color(0.654902, 0.654902, 0.690196, 1)
+theme_override_fonts/font = SubResource("FontVariation_liums")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_e8nhi")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_uicjn")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_uicjn")
+theme_override_styles/tab_focus = SubResource("StyleBoxFlat_uicjn")
+tab_count = 3
+tab_alignment = 1
+tab_0/title = "CAR"
+tab_1/title = "PAINT"
+tab_2/title = "CUSTOMIZE"
+
+[connection signal="tab_changed" from="PanelContainer/NavBar" to="." method="_on_nav_bar_tab_changed"]
