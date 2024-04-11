@@ -1,9 +1,13 @@
 name: "godot-ci export"
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   GODOT_VERSION: 4.2.1
-  EXPORT_NAME: car-customizer
+  EXPORT_NAME: CarCustomizer
   PROJECT_PATH: .
 
 jobs:
@@ -25,7 +29,7 @@ jobs:
         run: |
           mkdir -v -p build/windows
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+          godot --headless --verbose --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
