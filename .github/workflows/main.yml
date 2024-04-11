@@ -40,5 +40,5 @@ jobs:
         with:
           tag_name: stable
           name: Windows
-          files: build/windows
+          files: build/windows/*
       
