@@ -9,11 +9,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-    tags:
-      - "v.*.*.*"
   pull_request:
-    tags:
-      - "v.*.*.*"
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -42,6 +38,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: stable
           name: Windows
           files: build/windows
       
