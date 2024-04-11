@@ -40,5 +40,7 @@ jobs:
         with:
           tag_name: stable
           name: Windows
-          files: build/windows/$EXPORT_NAME.zip
+          files: |
+            build/windows/$EXPORT_NAME.exe
+            build/windows/$EXPORT_NAME.pck
       
